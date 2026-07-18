@@ -1,0 +1,72 @@
+<svg width="900" height="1150" viewBox="0 0 900 1150" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#4b5563"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="1150" fill="#ffffff"/>
+
+  <text x="450" y="45" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#111827">CI/CD Pipeline Architecture</text>
+  <text x="450" y="70" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#6b7280">GitHub Actions &#8594; Docker Hub &#8594; AWS EC2 (Dockerized 3-Tier App)</text>
+
+  <!-- Developer -->
+  <rect x="360" y="100" width="180" height="50" rx="10" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1.5"/>
+  <text x="450" y="130" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#111827">Developer</text>
+  <line x1="450" y1="150" x2="450" y2="190" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="470" y="175" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7280">git push (main)</text>
+
+  <!-- GitHub Repo -->
+  <rect x="330" y="190" width="240" height="50" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="450" y="220" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#1e3a8a">GitHub Repository</text>
+  <line x1="450" y1="240" x2="450" y2="280" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- CI Workflow -->
+  <rect x="260" y="280" width="380" height="150" rx="14" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="450" y="308" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4c1d95">CI Workflow (ci.yml)</text>
+  <text x="450" y="335" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#5b21b6">1. Checkout source code</text>
+  <text x="450" y="358" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#5b21b6">2. Build backend &amp; frontend Docker images</text>
+  <text x="450" y="381" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#5b21b6">3. Tag images (commit SHA + latest)</text>
+  <text x="450" y="404" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#5b21b6">4. Push images to Docker Hub</text>
+
+  <line x1="450" y1="430" x2="450" y2="470" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="475" y="453" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7280">on success</text>
+
+  <!-- Docker Hub -->
+  <rect x="330" y="470" width="240" height="50" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
+  <text x="450" y="500" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#075985">Docker Hub Registry</text>
+  <line x1="450" y1="520" x2="450" y2="560" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- CD Workflow -->
+  <rect x="260" y="560" width="380" height="130" rx="14" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="450" y="588" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#4c1d95">CD Workflow (cd.yml)</text>
+  <text x="450" y="615" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#5b21b6">1. SSH into AWS EC2 instance</text>
+  <text x="450" y="638" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#5b21b6">2. Pull latest Docker images</text>
+  <text x="450" y="661" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#5b21b6">3. docker compose up -d (restart containers)</text>
+
+  <line x1="450" y1="690" x2="450" y2="730" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- EC2 Container -->
+  <rect x="150" y="730" width="600" height="380" rx="18" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="450" y="762" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#065f46">AWS EC2 Instance</text>
+  <text x="450" y="782" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#047857">Docker Compose &#8212; exposed on port 80</text>
+
+  <!-- Frontend -->
+  <rect x="210" y="810" width="480" height="70" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="450" y="840" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#7f1d1d">Frontend</text>
+  <text x="450" y="860" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#991b1b">Nginx + HTML/CSS/JS &#8212; serves UI, proxies /api/*</text>
+  <line x1="450" y1="880" x2="450" y2="910" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Backend -->
+  <rect x="210" y="910" width="480" height="70" rx="10" fill="#fce7f3" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="450" y="940" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#831843">Backend</text>
+  <text x="450" y="960" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#9d174d">Go + Gin Framework &#8212; REST API on :8080</text>
+  <line x1="450" y1="980" x2="450" y2="1010" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Database -->
+  <rect x="210" y="1010" width="480" height="70" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="450" y="1040" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#78350f">Database</text>
+  <text x="450" y="1060" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#92400e">MySQL 8.4 &#8212; skills &amp; learning log data</text>
+
+  <text x="450" y="1120" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#9ca3af">Secrets used: DOCKERHUB_USERNAME, DOCKERHUB_TOKEN, EC2_HOST, EC2_USER, EC2_SSH_KEY</text>
+</svg>
