@@ -51,8 +51,7 @@ This repository is maintained as an **ongoing DevOps learning project**, with co
 | Operating System | Ubuntu Linux |
 
 ---
-
-# 🏗️ Solution Architecture
+## 🏗️ Solution Architecture
 
 <p align="center">
   <img src="./architecture/architecture.svg" alt="CI/CD Pipeline Architecture" width="100%">
