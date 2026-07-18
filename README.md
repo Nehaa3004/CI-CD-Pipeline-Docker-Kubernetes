@@ -52,10 +52,10 @@ This repository is maintained as an **ongoing DevOps learning project**, with co
 
 ---
 
-## 🏗️ Solution Architecture
+# 🏗️ Solution Architecture
 
 <p align="center">
-  <img src="./architecture/architecture.png" alt="CI/CD Pipeline Architecture" width="100%">
+  <img src="./architecture/architecture.svg" alt="CI/CD Pipeline Architecture" width="100%">
 </p>
 
 The following architecture illustrates the complete CI/CD workflow. Every code push triggers GitHub Actions to build Docker images, publish them to Docker Hub, and automatically deploy the latest version to AWS EC2. The repository also includes Kubernetes manifests for deploying the application on a local Kind cluster.
