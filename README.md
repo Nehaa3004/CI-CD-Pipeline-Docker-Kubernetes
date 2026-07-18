@@ -9,32 +9,37 @@
 > 🚧 **Project Status:** Ongoing
 
 ---
-## 📌 Project Overview
 
-This project demonstrates an automated CI/CD pipeline for a Dockerized three-tier web application using GitHub Actions, Docker, Kubernetes, and AWS. The primary objective is to automate the software delivery process from source code to deployment while following modern DevOps practices.
+# 📌 Project Overview
 
-The application consists of a frontend, backend, and MySQL database. Every code change pushed to the GitHub repository automatically triggers a Continuous Integration (CI) workflow that builds Docker images and prepares them for deployment. After a successful build, the Continuous Deployment (CD) workflow deploys the latest application version to the target environment.
+This project demonstrates an automated **CI/CD pipeline** for a Dockerized **3-tier web application** using **GitHub Actions, Docker, Kubernetes, and AWS EC2**.
 
-This repository is maintained as an ongoing DevOps learning project, with continuous improvements in automation, deployment strategies, and infrastructure management.
+The primary objective is to automate the complete software delivery lifecycle—from source code management to deployment—by following modern DevOps practices.
 
+The application consists of a frontend, backend, and MySQL database. Every code push automatically triggers a Continuous Integration (CI) workflow that builds Docker images and publishes them to Docker Hub. A Continuous Deployment (CD) workflow then deploys the latest version of the application to an AWS EC2 instance.
 
-## ✨ Project Highlights
+This repository is maintained as an **ongoing DevOps learning project**, with continuous improvements in automation, container orchestration, and deployment strategies.
+
+---
+
+# ✨ Project Highlights
 
 - Automated CI/CD pipeline using GitHub Actions
-- Dockerized three-tier application architecture
-- Multi-stage Docker image builds
-- Continuous Integration for automated builds
-- Continuous Deployment to target infrastructure
-- Kubernetes manifests for container orchestration
-- Docker Compose for local development
-- MySQL database integration
+- Dockerized three-tier application
+- Multi-stage Docker builds
+- Docker Compose deployment
+- Kubernetes deployment manifests
 - AWS EC2 deployment
+- Docker Hub integration
+- Secure GitHub Secrets management
 - Infrastructure automation following DevOps best practices
 
-## 🛠️ Tech Stack
+---
+
+# 🛠️ Tech Stack
 
 | Category | Technologies |
-|----------|--------------|
+|-----------|--------------|
 | CI/CD | GitHub Actions |
 | Containers | Docker, Docker Compose |
 | Orchestration | Kubernetes (Kind) |
@@ -45,108 +50,173 @@ This repository is maintained as an ongoing DevOps learning project, with contin
 | Version Control | Git & GitHub |
 | Operating System | Ubuntu Linux |
 
-## 🏗️ Solution Architecture
+---
+
+# 🏗️ Solution Architecture
 
 <p align="center">
-  <img src="architecture/architecture.png" alt="CI/CD Pipeline Architecture" width="100%">
+<img src="architecture/architecture.png" width="100%" alt="CI/CD Pipeline Architecture">
 </p>
 
-The following diagram illustrates the end-to-end CI/CD workflow for the Dockerized three-tier application. Every code push triggers an automated GitHub Actions pipeline that builds Docker images, publishes them to Docker Hub, and deploys the latest version to AWS EC2. The project also includes Kubernetes manifests for deploying the application on a local Kind cluster.
+The following architecture illustrates the complete CI/CD workflow. Every code push triggers GitHub Actions to build Docker images, publish them to Docker Hub, and automatically deploy the latest version to AWS EC2. The repository also includes Kubernetes manifests for deploying the application on a local Kind cluster.
 
-## 🔄 CI/CD Workflow
+---
 
-The project follows an automated Continuous Integration and Continuous Deployment (CI/CD) workflow.
+# 📂 Project Structure
+
+```text
+CI-CD-Pipeline-Docker-Kubernetes
+│
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       └── cd.yml
+│
+├── application/
+│   ├── backend/
+│   ├── frontend/
+│   └── mysql/
+│
+├── docker/
+│   └── docker-compose.yml
+│
+├── kubernetes/
+│   ├── kind-config.yaml
+│   ├── namespace.yaml
+│   ├── backend.yaml
+│   ├── frontend.yaml
+│   └── mysql.yaml
+│
+├── architecture/
+│   └── architecture.png
+│
+├── screenshots/
+│
+├── docs/
+│
+├── README.md
+└── .gitignore
+```
+
+---
+
+# 🔄 CI/CD Workflow
 
 ```text
 Developer
-    │
-    │ Git Push
-    ▼
+      │
+      ▼
+Git Push
+      │
+      ▼
 GitHub Repository
-    │
-    ▼
+      │
+      ▼
 GitHub Actions (CI)
-    │
-    ├── Checkout Source Code
-    ├── Build Docker Images
-    ├── Tag Images
-    └── Push Images to Docker Hub
+      │
+      ├── Checkout Source Code
+      ├── Build Backend Image
+      ├── Build Frontend Image
+      ├── Tag Docker Images
+      └── Push Images to Docker Hub
+                │
+                ▼
+           Docker Hub
                 │
                 ▼
 GitHub Actions (CD)
                 │
-                ├── Connect to AWS EC2 (SSH)
+                ├── SSH into AWS EC2
                 ├── Pull Latest Docker Images
-                └── Restart Application Containers
+                ├── Docker Compose Up -d
+                └── Health Check
                 │
                 ▼
       Running Dockerized Application
 ```
 
-### Continuous Integration (CI)
+---
 
-The CI workflow automatically executes whenever changes are pushed to the main branch.
+# 🚀 Deployment Flow
 
-- Checks out the latest source code
-- Builds backend and frontend Docker images
-- Tags images using the latest and commit SHA
-- Pushes Docker images to Docker Hub
+```text
+Developer
+      │
+      ▼
+Git Push
+      │
+      ▼
+GitHub Repository
+      │
+      ▼
+GitHub Actions (CI)
+      │
+      ▼
+Docker Hub
+      │
+      ▼
+GitHub Actions (CD)
+      │
+      ▼
+AWS EC2 Instance
+      │
+      ▼
+Docker Compose
+      │
+      ▼
+Frontend (Nginx)
+      │
+      ▼
+Backend (Go + Gin)
+      │
+      ▼
+MySQL Database
+```
 
-### Continuous Deployment (CD)
+---
 
-After a successful CI pipeline, the deployment workflow automatically:
-
-- Connects to the deployment server
-- Pulls the latest Docker images
-- Updates running containers using Docker Compose
-- Deploys the latest application version with minimal downtime
-
-## 🚀 Key Features
+# 🚀 Key Features
 
 - Automated CI/CD using GitHub Actions
 - Dockerized frontend and backend services
 - Multi-stage Docker builds
-- Docker Compose for local development
-- Kubernetes deployment manifests
-- AWS EC2 deployment
-- Automated Docker image publishing
-- Secure credential management using GitHub Secrets
-- Version-controlled infrastructure configuration
-- Scalable three-tier application architecture
-
-## ⚙️ Key Components
-
-### GitHub Actions
-- Automates Continuous Integration and Continuous Deployment.
-- Builds and tags Docker images.
-- Pushes images to Docker Hub.
-- Deploys updated application to AWS EC2.
-
-### Docker
-- Containerizes frontend and backend services.
-- Uses Docker Compose for multi-container deployment.
-
-### Kubernetes
-- Provides deployment manifests for running the application on a Kubernetes cluster.
-- Includes Deployments, Services, Namespace, and MySQL configuration.
-
-### AWS EC2
-- Hosts the Dockerized application.
-- Receives automated deployments through GitHub Actions.
-
-## ✨ Features
-
-- Automated CI/CD using GitHub Actions
-- Dockerized multi-container application
 - Docker Compose deployment
-- Kubernetes-ready manifests
+- Kubernetes deployment manifests
+- Docker Hub image publishing
 - AWS EC2 deployment
-- Docker Hub image registry
-- Secure GitHub Secrets integration
+- GitHub Secrets integration
 - Three-tier application architecture
-- Continuous deployment automation
+- Infrastructure automation
 
-## 📋 Prerequisites
+---
+
+# ⚙️ Key Components
+
+## GitHub Actions
+
+- Automates CI/CD pipelines
+- Builds Docker images
+- Publishes images to Docker Hub
+- Deploys the latest application to AWS EC2
+
+## Docker
+
+- Containerizes frontend and backend services
+- Uses Docker Compose for multi-container deployment
+
+## Kubernetes
+
+- Provides deployment manifests
+- Includes Deployments, Services, Namespace, and MySQL StatefulSet
+
+## AWS EC2
+
+- Hosts the Dockerized application
+- Receives automated deployments through GitHub Actions
+
+---
+
+# 📋 Prerequisites
 
 - Git
 - Docker & Docker Compose
@@ -154,46 +224,60 @@ After a successful CI pipeline, the deployment workflow automatically:
 - Docker Hub Account
 - AWS Account
 - Ubuntu EC2 Instance
-- Kubernetes (Kind or Minikube)
+- Kubernetes (Kind / Minikube)
 
-## 📸 Screenshots
+---
+
+# 📸 Screenshots
 
 Screenshots will be added as the project progresses.
 
 | Screenshot | Description |
 |------------|-------------|
-| GitHub Actions | CI/CD workflow execution |
-| Docker Images | Successfully built images |
-| Docker Hub | Published container images |
-| AWS EC2 | Running application |
-| Kubernetes | Deployed workloads |
+| GitHub Actions | CI/CD Workflow |
+| Docker Images | Build Process |
+| Docker Hub | Published Images |
+| AWS EC2 | Running Containers |
+| Kubernetes | Running Pods |
+| Application | Homepage |
 
-## 🎯 Learning Outcomes
+---
 
-Through this project, I gained practical experience in:
+# 🎯 Learning Outcomes
 
-- Designing CI/CD pipelines using GitHub Actions
+Through this project, I gained hands-on experience in:
+
+- Building CI/CD pipelines using GitHub Actions
 - Containerizing applications with Docker
 - Managing multi-container deployments using Docker Compose
-- Deploying applications on AWS EC2
+- Deploying applications to AWS EC2
 - Working with Kubernetes manifests
+- Using GitHub Secrets for secure deployments
 - Automating software delivery workflows
-- Managing secrets securely in GitHub Actions
+- Following DevOps best practices
 
+---
 
-## 🚀 Future Enhancements
+# 🚀 Future Enhancements
 
-- Implement automated testing in CI pipeline
-- Deploy to Amazon EKS
-- Integrate Terraform for infrastructure provisioning
-- Add monitoring with Prometheus & Grafana
+- Integrate automated unit testing
+- Deploy the application on Amazon EKS
+- Provision infrastructure using Terraform
+- Add Prometheus & Grafana monitoring
 - Implement Helm Charts
-- Configure Ingress Controller
+- Configure Kubernetes Ingress Controller
+- Adopt GitOps using Argo CD
 
-## 👩‍💻 Author
+---
 
-**Neha Sunil Pawar**
+# 👩‍💻 Author
 
-AWS Certified Solutions Architect – Associate
+## Neha Sunil Pawar
 
-Passionate about Cloud Computing, DevOps, AWS, Docker, Kubernetes, and CI/CD Automation.
+**AWS Certified Solutions Architect – Associate**
+
+Passionate about AWS Cloud, DevOps, Linux, Docker, Kubernetes, and CI/CD automation.
+
+**GitHub:** https://github.com/Nehaa3004
+
+---
