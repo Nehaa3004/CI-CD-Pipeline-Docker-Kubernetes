@@ -52,8 +52,6 @@ This repository is maintained as an **ongoing DevOps learning project**, with co
 
 ---
 
-# 🏗️ Solution Architecture
-
 ## 🏗️ Solution Architecture
 
 <p align="center">
