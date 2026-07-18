@@ -48,9 +48,7 @@ This repository is maintained as an ongoing DevOps learning project, with contin
 ## 🏗️ Solution Architecture
 
 <p align="center">
-  <img src="architecture/architecture.png" alt="CI/CD Architecture" width="100%">
-</p>
-
+<img src="architecture/architecture.png" alt="CI/CD Pipeline Architecture" width="100%">
 The project automates the software delivery lifecycle by integrating GitHub Actions, Docker, Kubernetes, and AWS. Every code change pushed to the repository triggers an automated workflow that builds, packages, and deploys the application with minimal manual intervention.
 
 ## 🔄 CI/CD Workflow
